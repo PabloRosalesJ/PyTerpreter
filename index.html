@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/public/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PyTerpreter</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div id="toolbar">
+        <div class="toolbar-left">
+          <button id="btn-run" class="toolbar-btn run" title="Run script (Cmd+Enter)">
+            <span class="icon">▶</span> Run
+          </button>
+          <span class="separator"></span>
+          <button id="btn-new-tab" class="toolbar-btn" title="New tab">
+            <span class="icon">+</span> Tab
+          </button>
+          <button id="btn-open" class="toolbar-btn" title="Open file">
+            <span class="icon">📁</span> Open
+          </button>
+          <button id="btn-save" class="toolbar-btn" title="Save file (Cmd+S)">
+            <span class="icon">💾</span> Save
+          </button>
+          <span class="separator"></span>
+          <span id="workspace-label" class="workspace-label dim">📂 No workspace</span>
+          <button id="btn-set-workspace" class="toolbar-btn" title="Set workspace directory">
+            Set Workspace
+          </button>
+          <button id="btn-new-env" class="toolbar-btn" title="Create virtual environment">
+            <span class="icon">🔬</span> New Env
+          </button>
+          <div class="venv-selector">
+            <select id="venv-select">
+              <option value="">No venv (uv run)</option>
+            </select>
+          </div>
+          <button id="btn-install-pkg" class="toolbar-btn" title="Install package">
+            <span class="icon">📦</span> +pkg
+          </button>
+          <span class="separator"></span>
+          <button id="btn-clear-output" class="toolbar-btn" title="Clear output">
+            Clear
+          </button>
+        </div>
+        <div class="toolbar-right">
+          <button id="btn-theme" class="toolbar-btn" title="Toggle theme">
+            <span class="icon" id="theme-icon">🌙</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="main-container">
+        <div id="editor-pane">
+          <div id="tabs-bar">
+            <div class="tabs-container" id="tabs-container"></div>
+            <div class="tabs-padding"></div>
+          </div>
+          <div id="editor-container"></div>
+        </div>
+
+        <div id="divider" class="divider"></div>
+
+        <div id="output-pane">
+          <div id="output-header">
+            <span>OUTPUT</span>
+            <button id="btn-clear-output-small" class="small-btn">Clear</button>
+          </div>
+          <pre id="output-content"><span class="dim">Ready. Press ▶ Run or Cmd+Enter to execute.</span></pre>
+        </div>
+      </div>
+    </div>
+
+    <div id="pkg-modal-overlay" class="modal-overlay hidden">
+      <div class="modal">
+        <div class="modal-header">
+          <h3>Install Package</h3>
+          <button id="modal-close" class="small-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+          <input
+            type="text"
+            id="pkg-input"
+            placeholder="e.g. requests, numpy==1.26.0"
+            autocomplete="off"
+          />
+          <button id="modal-install" class="toolbar-btn run">Install</button>
+        </div>
+        <div id="modal-result" class="modal-result"></div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/loader.js"></script>
+    <script>
+      require.config({
+        paths: {
+          vs: "https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs",
+        },
+      });
+      window.__monacoLoading = true;
+      require(["vs/editor/editor.main"], function (monaco) {
+        window.__monaco = monaco;
+        window.__monacoReady = true;
+        document.dispatchEvent(new Event("monaco-ready"));
+      });
+    </script>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

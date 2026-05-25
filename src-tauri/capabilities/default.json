@@ -1,0 +1,17 @@
+{
+  "identifier": "default",
+  "description": "Default capability for PyTerpreter",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "shell:allow-execute",
+    "shell:allow-open",
+    "shell:allow-spawn",
+    "shell:default",
+    "dialog:default",
+    "dialog:allow-open",
+    "dialog:allow-save",
+    "dialog:allow-ask",
+    "dialog:allow-message"
+  ]
+}
