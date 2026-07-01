@@ -40,6 +40,12 @@ pnpm tauri build
 
 The binary is output at `src-tauri/target/release/pyterpreter` (macOS/Linux) or `src-tauri/target/release/pyterpreter.exe` (Windows). Installers are placed in `src-tauri/target/release/bundle/` (`.dmg` on macOS, `.msi` on Windows, `.deb`/`.AppImage` on Linux).
 
+## License
+
+MIT — see [LICENSE](LICENSE).
+
+You are free to reuse, modify, and distribute this project, including parts of its code, as long as you retain the copyright notice and permission notice (attribution). In other words: if you use code from PyTerpreter, you must credit this repository and include the license notice.
+
 ## Tech Stack
 
 - **Frontend:** TypeScript, Vite, Monaco Editor
